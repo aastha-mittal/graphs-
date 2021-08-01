@@ -1,0 +1,13 @@
+glob.glob("C:\\Users\\mitta\\MyPython\\Energy and Minerals\\*.csv")
+energy = pd.read_csv("C:\\Users\\mitta\\MyPython\\Energy and Minerals\\Energy intensity measured in terms of primary energy and GDP.csv")
+ne = energy[["Country and area", "2000", "2017"]]
+ne_final = ne[(ne["Country and area"] == "China") | (ne["Country and area"] == "Germany") | (ne["Country and area"] == "India")
+          |(ne["Country and area"] == "United States of America") | (ne["Country and area"] == "Russian Federation")
+          | (ne["Country and area"] == "Japan") | (ne["Country and area"] == "Canada") | (ne["Country and area"] == "Russian Federation")
+          | (ne["Country and area"] == "Russian Federation") | (ne["Country and area"] == "Japan") | (ne["Country and area"] == "Canada") 
+          | (ne["Country and area"] == "Saudi Arabia") | (ne["Country and area"] == "Republic of Korea") | (ne["Country and area"] == "Indonesia")]
+
+barplot_energy = sns.barplot(x = "Country and area", y = "2017", data = ne_final)
+plt.figure(figsize  = (14, 3))
+plt.tight_layout()
+barplot_energy.tick_params(axis='x', labelrotation = 45)
