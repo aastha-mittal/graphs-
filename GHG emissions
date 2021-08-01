@@ -1,0 +1,12 @@
+GHG = pd.read_csv("C:\\Users\\mitta\\MyPython\\Air and Climate\\GHG_Emissions.csv")
+GHG.drop([0], inplace = True)
+GHG1  = GHG[["Country", "GHG emissions per capita,\n latest year" ]]
+GHG_new = GHG1[(GHG1["Country"] == "China") | (GHG1["Country"] == "Germany") | (GHG1["Country"] == "India")
+          |(GHG1["Country"] == "United States of America") | (GHG1["Country"] == "Russian Federation")
+          | (GHG1["Country"] == "Japan") | (GHG1["Country"] == "Canada") | (GHG1["Country"] == "Russian Federation")
+          | (GHG1["Country"] == "Russian Federation") | (GHG1["Country"] == "Japan") | (GHG1["Country"] == "Canada") 
+          | (GHG1["Country"] == "Saudi Arabia") | (GHG1["Country"] == "Republic of Korea") | (GHG1["Country"] == "Indonesia")]
+barplot_GHG = sns.barplot(x = "Country", y = "GHG emissions per capita,\n latest year", data = GHG_new)
+plt.figure(figsize  = (14, 3))
+plt.tight_layout()
+barplot_GHG.tick_params(axis='x', labelrotation = 45)
