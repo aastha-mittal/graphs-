@@ -1,0 +1,40 @@
+#imported all nescessary libraries. 
+import numpy as np
+import pandas as pd
+import seaborn as sns 
+import glob
+import matplotlib.pyplot as plt 
+%matplotlib inline 
+
+#files = glob.glob("C:\\Users\\mitta\\MyPython\\Air and Climate\\*.csv")
+
+# selecting the CO2 csv file from a kaggle dataset 
+df = pd.read_csv('C:\\Users\\mitta\\MyPython\\Air and Climate\\CO2_Emissions.csv')
+
+# dropped the first row since it was irrelavant. 
+df.drop([0], inplace = True)
+
+# creating a new dataframe with the columns I want to analyze. 
+df1  = df[["Country", "CO2 emissions \nper capita, \nlatest year" ]]
+
+# selecting the the top 10 countries, I wanted to analyze in this hackathon. 
+new_df = df1[(df1["Country"] == "China") | (df1["Country"] == "Germany") | (df1["Country"] == "India")
+          |(df1["Country"] == "United States of America") | (df1["Country"] == "Russian Federation")
+          | (df1["Country"] == "Japan") | (df1["Country"] == "Canada") | (df1["Country"] == "Russian Federation")
+          | (df1["Country"] == "Russian Federation") | (df1["Country"] == "Japan") | (df1["Country"] == "Canada") 
+          | (df1["Country"] == "Saudi Arabia") | (df1["Country"] == "Republic of Korea") | (df1["Country"] == "Indonesia")]
+
+# creating a barplot with searborn library. 
+barplot_Co2 = sns.barplot(x = "Country", y = "CO2 emissions \nper capita, \nlatest year", data = new_df)
+
+sns.set_style("darkgrid")
+
+
+#Changing the figure size, so it is easier for the user to read 
+plt.figure(figsize  = (14, 3))
+
+# applying the tight layout method, to make sure nothing overlaps 
+plt.tight_layout()
+
+# rotating the country name, to increase readabilty. 
+barplot_Co2.tick_params(axis='x', labelrotation = 45)
